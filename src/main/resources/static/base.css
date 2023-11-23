@@ -1,0 +1,18 @@
+body {
+    background-color: #3c3c3d; /* Пример цвета фона для всей страницы */
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+    background-color: rgba(128, 123, 120, 0.6); /* Синий цвет фона для навигационной панели */
+}
+.custom-background {
+    background-color: #ffffff; /* Пример цвета фона для отдельных секций */
+}
+.custom-search {
+    background-color: #3c3c3d; /* Пример цвета фона для отдельных секций */
+}
+.img-preview {
+    width: auto;      /* ширина изображения будет автоматически регулироваться */
+    height: 300px;    /* высота изображения будет фиксированной */
+    object-fit: cover; /* обрезка и подгонка изображения по размеру контейнера без искажений */
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/logo.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="/base.css">
+  <link rel="stylesheet" type="text/css" href="/search.css">
+  <title>Оценка телефонов</title>
+</head>
+<body>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">trademyphone.ru</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Оценка <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">О проекте</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Каталог</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Описание сервиса -->
+<div class="container mt-4 custom-background rounded text-center">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Описание сервиса</h2>
+      <p>Используя алгоритмы машинного обучения веб-приложение анализирует фотографии на основе компьютерного зрения. </p>
+    </div>
+  </div>
+</div>
+<div class="container mt-4 custom-search rounded">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="d-flex justify-content-center" onsubmit="event.preventDefault();">
+        <input class="form-control me-2" id="autocomplete-input" type="search" placeholder="Введите наименование смартфона" aria-label="Search">
+        <div id="autocomplete-list" class="autocomplete-items"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Чек бокс коплактации смартфона -->
+<div class="container mt-4 custom-background rounded complications" style="display: none;">
+  <h2>Выберите комплектацию смартфона:</h2>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="withoutcompletesetCheckbox">
+    <label class="form-check-label" for="withoutcompletesetCheckbox">Без комплектации</label>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="powerunitCheckbox">
+    <label class="form-check-label" for="powerunitCheckbox">Блок питания</label>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="chargingcableCheckbox">
+    <label class="form-check-label" for="chargingcableCheckbox">Кабель для зарядки и передачи данных (USB-кабель).</label>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="caseCheckbox">
+    <label class="form-check-label" for="caseCheckbox">Чехол</label>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="boxCheckbox">
+    <label class="form-check-label" for="boxCheckbox">Коробка</label>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <textarea class="form-control" id="smartphoneDescription" rows="5" placeholder="Введите описание смартфона здесь...
+          Пример: не работает камера и фейс id"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-3" id="complicationSmartphone">Далее</button>
+</div>
+
+<div class="container mt-4 custom-search rounded numberPhone" style="display: none;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group">
+        <input type="text" class="form-control" id="phone" placeholder="Введите номер телефона">
+        <div class="input-group-append">
+          <button class="btn btn-primary" id="submit-button" type="button">Далее</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Карточки фото телефона -->
+<div class="container mt-4 custom-search rounded uploadPhoto" style="display: none;">
+  <div class="row">
+    <!-- Карточка выключенного экрана -->
+    <div class="col-12 col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <img id="preview-img1" src="/dispayoff.png" class="card-img-top img-preview" alt="...">
+        <div class="card-body">
+          <p class="card-text">Загрузите фото выключенного экрана</p>
+          <input type="file" class="form-control" id="upload-img1" aria-label="Загрузить изображение выключенного экрана">
+          <div id="upload-icon1" style="display: none;">✔️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка тыльной стороны -->
+    <div class="col-12 col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <img id="preview-img2" src="/backofthephone.png" class="card-img-top img-preview" alt="...">
+        <div class="card-body">
+          <p class="card-text">Загрузите фото тыльной стороны</p>
+          <input type="file" class="form-control" id="upload-img2" aria-label="Загрузить изображение тыльной части">
+          <div id="upload-icon2" style="display: none;">✔️</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Карточка включёного экрана -->
+    <div class="col-12 col-sm-6 col-md-4 mb-4">
+      <div class="card">
+        <img id="preview-img3" src="/display.png" class="card-img-top img-preview" alt="...">
+        <div class="card-body">
+          <p class="card-text">Загрузите фото включёного экрана</p>
+          <input type="file" class="form-control" id="upload-img3" aria-label="Загрузить изображение включённого экрана">
+          <div id="upload-icon3" style="display: none;">✔️</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" id="upload-button" disabled>Отправить фото</button>
+</div>
+
+<!-- Таблица расчёта цены -->
+<div class="container mt-4" style="display: none;">
+  <div class="row">
+    <table class="table table-light table-striped table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Часть телефона</th>
+        <th scope="col">Состояние</th>
+        <th scope="col">Изменеие цены</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Экран</td>
+        <td>Отличное</td>
+        <td>-0</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Задняя панель</td>
+        <td>Отличное</td>
+        <td>-0</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Дисплей экрана</td>
+        <td>Отличное</td>
+        <td>-0</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Начинка</td>
+        <td>Отличное</td>
+        <td>-0</td>
+      </tr>
+      <tr>
+        <th scope="row">Вывод</th>
+        <td></td>
+        <td></td>
+        <td>12500</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--JavaScript и зависимости веб-приложения -->
+<script src="/UploadingSendingPhotos.js"></script>
+<script src="/search.js"></script>
+<script src="/generateSessionId.js"></script>
+<script src="/validateAndSave.js"></script>
+<script src="/complications.js"></script>
+
+<!-- Bootstrap JavaScript и зависимости -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
